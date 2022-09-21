@@ -1,6 +1,7 @@
 <template>
   <div class="about">
     <h1>This is an about page</h1>
+    <p>You made it really farm, keep progressing mate !</p>
   </div>
 </template>
 
