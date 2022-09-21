@@ -1,7 +1,7 @@
 <template>
   <div class="about">
-    <h1>This is an about page</h1>
-    <p>You made it really farm, keep progressing mate !</p>
+    <h1 class="about_item">This is an about page</h1>
+    <p class="about_item">You made it really farm, keep progressing mate !</p>
   </div>
 </template>
 
@@ -11,6 +11,10 @@
     min-height: 100vh;
     display: flex;
     align-items: center;
+  }
+
+  .about_item {
+    width:100%;
   }
 }
 </style>
