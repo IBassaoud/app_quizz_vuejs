@@ -9,6 +9,8 @@
 
       <!------------ All options container ----------->
       <div class="options_container">
+        <div class="score">Score</div>
+        <div class="score_num">{{ score }}</div>
         <!------------ Option container ----------->
         <div class="option_container">
           <div v-for="(choice, item) in currentQuestion.choices" :key="item">
@@ -41,7 +43,7 @@ export default {
   setup() {
     let canClick = true;
     let questionCounter = ref(0);
-    let score = ref(0);
+    let score = ref(null);
     const currentQuestion = ref({
       question: "",
       answer: 1,
@@ -53,9 +55,9 @@ export default {
         question: "Qu'est ce qui est jaune et qui attend ?",
         answer: 1,
         choices: [
-          "Ton erreur warning à corriger!",
-          "Jonathan",
-          "Tes fichiers modifiés encore non-push",
+          "Tes erreurs warning qui attendent correction!",
+          "Jonathan !",
+          "Tes fichiers modifiés suivie par Git",
           "La bonne réponse",
         ],
       },
@@ -64,15 +66,45 @@ export default {
         answer: 1,
         choices: [
           "120 characters",
+          "280 characters",
+          "320 characters",
           "160 characters",
-          "140 characters",
-          "100 characters",
         ],
       },
       {
         question: "Who will win the Worl Cup 2022 ?",
         answer: 3,
-        choices: ["Me", "France", "Japan", "Morrocco"],
+        choices: ["Aller Guingamp", "France", "South Korea", "Morrocco"],
+      },
+      {
+        question: "What is Vue.js ?",
+        answer: 0,
+        choices: [
+          "A progressive framework for JavaScript used to build web interfaces and one-page applications",
+          "An organized collection of structured information stored in a computer system",
+          "A mechanism that enable two software components to communicate with each other using a set of definitions and protocols",
+          "An application-layer protocol for transmitting hypermedia documents",
+        ],
+      },
+      {
+        question: "What do you understand by Framework? ?",
+        answer: 1,
+        choices: [
+          "It's a beautiful frame usually hung on a wall that depicts people working",
+          "It's a structure that provides a platform to create applications. It is a collection of similar types of files placed in such a way that they are configured to connect/integrate with each other internally",
+          "It's a tool used in order building things for the web, WordPress for example",
+          "It's an environment that encapsulates a set of technologies,  used for developing, shipping, and running applications",
+        ],
+      },
+      {
+        question: "What is the difference between Null, Empty, and Undefined value and how can you handle each? ?",
+        answer: 3,
+        choices: [
+          "I see no difference",
+          "Null is when one element is compared with another that makes the first element null and void, undefined is when an element is declared but without a value",
+          "Null is fir isntance in a soccer game when neither team wins, undefined is when there is a match scheduled but without the presence of spectators, players, coaches and referees  ",
+          "The undefined value is a primitive value used when a variable has not been assigned a value. The null value is a primitive value that represents the null, empty, or non-existent reference.",
+        ],
       },
     ];
 
@@ -139,6 +171,7 @@ export default {
     return {
       currentQuestion,
       questions,
+      score,
       questionCounter,
       loadQuestion,
       onOptionClicked,
@@ -228,6 +261,21 @@ export default {
 
 .option_item {
   cursor: pointer;
+}
+
+.score {
+  font-weight: bold;
+  text-align: end;
+  margin-right: 10%;
+  font-size: 1.2rem;
+  color: #2c3e50;
+}
+.score_num {
+  font-weight: bold;
+  text-align: end;
+  margin-right: 10%;
+  font-size: 1rem;
+  color: #2c3e50;
 }
 
 .option_default_color {
