@@ -102,7 +102,7 @@ export default {
         choices: [
           "I see no difference",
           "Null is when one element is compared with another that makes the first element null and void, undefined is when an element is declared but without a value",
-          "Null is fir isntance in a soccer game when neither team wins, undefined is when there is a match scheduled but without the presence of spectators, players, coaches and referees  ",
+          "Null is for instance in a soccer game when neither team wins, undefined is when there is a match scheduled but without the presence of spectators, players, coaches and referees  ",
           "The undefined value is a primitive value used when a variable has not been assigned a value. The null value is a primitive value that represents the null, empty, or non-existent reference.",
         ],
       },
