@@ -87,7 +87,7 @@ export default {
         ],
       },
       {
-        question: "What do you understand by Framework? ?",
+        question: "What do you understand by Framework ?",
         answer: 1,
         choices: [
           "It's a beautiful frame usually hung on a wall that depicts people working",
@@ -97,13 +97,51 @@ export default {
         ],
       },
       {
-        question: "What is the difference between Null, Empty, and Undefined value and how can you handle each? ?",
+        question:
+          "What is the difference between Null, Empty, and Undefined value and how can you handle each ?",
         answer: 3,
         choices: [
           "I see no difference",
           "Null is when one element is compared with another that makes the first element null and void, undefined is when an element is declared but without a value",
           "Null is for instance in a soccer game when neither team wins, undefined is when there is a match scheduled but without the presence of spectators, players, coaches and referees  ",
           "The undefined value is a primitive value used when a variable has not been assigned a value. The null value is a primitive value that represents the null, empty, or non-existent reference.",
+        ],
+      },
+      {
+        question:
+          "In JavaScript, what method is used to arrange array values into alphabetical and/or ascending order?",
+        answer: 0,
+        choices: ["sort()", "from()", "shift()", "unshift()"],
+      },
+      {
+        question:
+          "In JavaScript, what is the name of the technique used to extract an object's values into new variables?",
+        answer: 3,
+        choices: [
+          "Hoisting",
+          "typeof",
+          "Array destructuring",
+          "Object destructuring",
+        ],
+      },
+      {
+        question: "What is GitHub?",
+        answer: 1,
+        choices: [
+          "An online IDE",
+          "A hosting platform for Git repositories",
+          "A popular database",
+          "A subscription based platform to sell coding classes",
+        ],
+      },
+      {
+        question: "What is the DOM in JavaScript?",
+        answer: 2,
+        choices: [
+          "A process that moves variables, functions, and classes to the top of the scope.",
+          "A function that is used as an argument for another function.",
+          "A programming interface to create, change, or remove elements from the document.",
+          "Technique used to extract array values into new variables.",
         ],
       },
     ];
