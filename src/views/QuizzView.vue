@@ -3,24 +3,24 @@
     <!------------ Quizz container ----------->
     <div class="quizz_container">
       <!------------ Question container ----------->
-      <div class="questions_container">
+      <div class="questions">
         <h2 class="question_item">{{ currentQuestion.question }}</h2>
       </div>
 
       <!------------ All options container ----------->
-      <div class="options_container">
+      <div class="answers">
         <div class="score">Score</div>
-        <div class="score_num">{{ score }}</div>
-        <!------------ Option container ----------->
-        <div class="option_container">
+        <div class="score__total-score" style="color:red">{{ score }}</div>
+        <!------------ Single option container ----------->
+        <div class="answer_option">
           <div v-for="(choice, item) in currentQuestion.choices" :key="item">
             <div
-              class="flex option_item option_default_color"
+              class="flex answer_option__item option_default_color"
               :ref="optionChosen"
               @click="onOptionClicked(choice, item)"
             >
-              <div class="option_id">{{ item + 1 }}</div>
-              <div class="option_name">{{ choice }}</div>
+              <div class="answer_option_id">{{ item + 1 }}</div>
+              <div class="answer_option_text">{{ choice }}</div>
             </div>
           </div>
         </div>
@@ -50,6 +50,7 @@ export default {
       choices: [],
     });
 
+    // List of proposed questions
     const questions = [
       {
         question: "Qu'est ce qui est jaune et qui attend ?",
@@ -145,7 +146,8 @@ export default {
         ],
       },
     ];
-
+    
+    // Question loader
     const loadQuestion = () => {
       canClick = true;
       // Check if there there are more questions to load
@@ -167,31 +169,33 @@ export default {
       }
     };
 
+    // Clear answer options once the user has selected (clicked) an answer and load the next question in the list after 1.5 sec
     const clearSelected = (divSelected) => {
       setTimeout(() => {
-        divSelected.classList.remove("option_correct");
-        divSelected.classList.remove("option_false");
-        divSelected.classList.add("option_default_color");
+        divSelected.classList.remove("correct_answer_selected");
+        divSelected.classList.remove("wrong_answer_selected");
+        divSelected.classList.add("default_color_answer");
         loadQuestion();
       }, 1500);
     };
 
     const onOptionClicked = (choice, item) => {
       if (canClick) {
-        // TODO : permit to select an option
+        // permit to select an option
         const divTagItem = itemsRef[item];
         const optionID = item;
         if (currentQuestion.value.answer == optionID) {
           console.log("You're correct my friend");
-          divTagItem.classList.add("option_correct");
-          divTagItem.classList.remove("option_default_color");
+          score.value += 10;
+          divTagItem.classList.add("correct_answer_selected");
+          divTagItem.classList.remove("default_color_answer");
         } else {
           console.log("You're tremendously wrong my friend");
-          divTagItem.classList.add("option_false");
-          divTagItem.classList.remove("option_default_color");
+          divTagItem.classList.add("wrong_answer_selected");
+          divTagItem.classList.remove("default_color_answer");
         }
         canClick = false;
-        // TODO go to next question
+        // Go to next question
         clearSelected(divTagItem);
         console.log(choice, item);
       } else {
@@ -230,11 +234,11 @@ export default {
     font-weight: bold;
   }
 
-  .option_id {
+  .answer_option_id {
     font-size: 2rem;
   }
 
-  .option_name {
+  .answer_option_text {
     font-size: 1rem;
   }
 }
@@ -245,11 +249,11 @@ export default {
     font-weight: bold;
   }
 
-  .option_id {
+  .answer_option_id {
     font-size: 2rem;
   }
 
-  .option_name {
+  .answer_option_text {
     font-size: 1.1rem;
   }
 }
@@ -267,7 +271,7 @@ export default {
   border-radius: 0.5rem;
 }
 
-.questions_container {
+.questions {
   width: 100%;
   height: fit-content;
   border-radius: 0.5rem;
@@ -283,21 +287,20 @@ export default {
   border-radius: 0.5rem;
 }
 
-.options_container {
+.answers {
   width: 100%;
   border-radius: 0.5rem;
   margin-top: 2rem;
   background-color: rgb(243 244 246);
 }
 
-.option_container {
+.answer_option {
   padding: 0.75rem;
   border-radius: 0.5rem;
-  padding-top: 2rem;
   padding-bottom: 2rem;
 }
 
-.option_item {
+.answer_option__item {
   cursor: pointer;
 }
 
@@ -308,7 +311,7 @@ export default {
   font-size: 1.2rem;
   color: #2c3e50;
 }
-.score_num {
+.score__total-score {
   font-weight: bold;
   text-align: end;
   margin-right: 10%;
@@ -316,15 +319,15 @@ export default {
   color: #2c3e50;
 }
 
-.option_default_color {
+.default_color_answer {
   background-color: rgb(243 244 246) !important;
 }
 
-.option_correct {
+.correct_answer_selected {
   background-color: rgba(62, 255, 68, 0.768) !important;
 }
 
-.option_false {
+.wrong_answer_selected {
   background-color: rgba(247, 36, 12, 0.903) !important;
 }
 
@@ -337,7 +340,7 @@ export default {
   margin-bottom: 1rem;
 }
 
-.option_id {
+.answer_option_id {
   border-radius: 0.5rem;
   background-color: #2c3e50;
   padding: 2px 1rem;
@@ -346,7 +349,7 @@ export default {
   align-self: center;
 }
 
-.option_name {
+.answer_option_text {
   border-radius: 0.5rem;
   color: #2c3e50;
   padding: 0.5rem 1rem;
